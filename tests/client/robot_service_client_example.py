@@ -1,6 +1,7 @@
 import time
+
 from unitree_sdk2py.core.channel import ChannelFactoryInitialize
-from unitree_sdk2py.go2.robot_state.robot_state_client import RobotStateClient
+from unitree_sdk2py.robots.go2.robot_state.robot_state_client import RobotStateClient
 
 if __name__ == "__main__":
     ChannelFactoryInitialize(0, "enx000ec6768747")
@@ -21,7 +22,7 @@ if __name__ == "__main__":
 
         print("##################ServiceList###################")
         code, lst = rsc.ServiceList()
-        
+
         if code != 0:
             print("list sevrice error. code:", code)
         else:
@@ -45,6 +46,5 @@ if __name__ == "__main__":
             print("service start sport_mode error. code:", code)
         else:
             print("service start sport_mode success. code:", code)
-        
-        time.sleep(3)
 
+        time.sleep(3)

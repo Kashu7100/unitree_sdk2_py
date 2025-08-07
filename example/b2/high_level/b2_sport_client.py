@@ -1,26 +1,30 @@
-import time
-import sys
-from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
-from unitree_sdk2py.b2.sport.sport_client import SportClient
 import math
+import sys
+import time
 from dataclasses import dataclass
+
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from unitree_sdk2py.robots.b2.sport.sport_client import SportClient
+
 
 @dataclass
 class TestOption:
     name: str
     id: int
 
+
 option_list = [
-    TestOption(name="Damp", id=0),         
-    TestOption(name="BalanceStand", id=1),     
-    TestOption(name="StopMove", id=2),   
-    TestOption(name="StandUp", id=3),         
-    TestOption(name="StandDown", id=4),    
-    TestOption(name="RecoveryStand", id=5),  
-    TestOption(name="Move", id=6),    
-    TestOption(name="FreeWalk", id=7),       
-    TestOption(name="ClassicWalk", id=8)    
+    TestOption(name="Damp", id=0),
+    TestOption(name="BalanceStand", id=1),
+    TestOption(name="StopMove", id=2),
+    TestOption(name="StandUp", id=3),
+    TestOption(name="StandDown", id=4),
+    TestOption(name="RecoveryStand", id=5),
+    TestOption(name="Move", id=6),
+    TestOption(name="FreeWalk", id=7),
+    TestOption(name="ClassicWalk", id=8),
 ]
+
 
 class UserInterface:
     def __init__(self):
@@ -46,10 +50,13 @@ class UserInterface:
             if input_str == option.name or self.convert_to_int(input_str) == option.id:
                 self.test_option_.name = option.name
                 self.test_option_.id = option.id
-                print(f"Test: {self.test_option_.name}, test_id: {self.test_option_.id}")
+                print(
+                    f"Test: {self.test_option_.name}, test_id: {self.test_option_.id}"
+                )
                 return
 
         print("No matching test option found.")
+
 
 if __name__ == "__main__":
 
@@ -57,22 +64,24 @@ if __name__ == "__main__":
         print(f"Usage: python3 {sys.argv[0]} networkInterface")
         sys.exit(-1)
 
-    print("WARNING: Please ensure there are no obstacles around the robot while running this example.\n"
-      "NOTE: Some interfaces are not demonstrated in this example for safety reasons. "
-      "If you need to use them, please contact technical support: https://serviceconsole.unitree.com/index.html#/")
+    print(
+        "WARNING: Please ensure there are no obstacles around the robot while running this example.\n"
+        "NOTE: Some interfaces are not demonstrated in this example for safety reasons. "
+        "If you need to use them, please contact technical support: https://serviceconsole.unitree.com/index.html#/"
+    )
     input("Press Enter to continue...")
 
     ChannelFactoryInitialize(0, sys.argv[1])
 
-    test_option = TestOption(name=None, id=None) 
+    test_option = TestOption(name=None, id=None)
     user_interface = UserInterface()
     user_interface.test_option_ = test_option
 
-    sport_client = SportClient()  
+    sport_client = SportClient()
     sport_client.SetTimeout(10.0)
     sport_client.Init()
 
-    print("Input \"list\" to list all test option ...")
+    print('Input "list" to list all test option ...')
 
     while True:
         user_interface.terminal_handle()

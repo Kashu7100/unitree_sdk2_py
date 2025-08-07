@@ -16,11 +16,9 @@ pip install unitree_sdk2py
 ### Installing from source
 Execute the following commands in the terminal:
 ```bash
-cd ~
-sudo apt install python3-pip
 git clone https://github.com/unitreerobotics/unitree_sdk2_python.git
 cd unitree_sdk2_python
-pip3 install -e .
+pip install -e .
 ```
 ## FAQ
 ##### 1. Error when `pip3 install -e .`:
