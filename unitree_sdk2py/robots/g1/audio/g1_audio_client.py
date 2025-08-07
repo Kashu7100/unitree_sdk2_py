@@ -1,7 +1,17 @@
 import json
 
-from ...rpc.client import Client
-from .g1_audio_api import *
+from ....rpc.client import Client
+from .g1_audio_api import (
+    AUDIO_API_VERSION,
+    AUDIO_SERVICE_NAME,
+    ROBOT_API_ID_AUDIO_ASR,
+    ROBOT_API_ID_AUDIO_GET_VOLUME,
+    ROBOT_API_ID_AUDIO_SET_RGB_LED,
+    ROBOT_API_ID_AUDIO_SET_VOLUME,
+    ROBOT_API_ID_AUDIO_START_PLAY,
+    ROBOT_API_ID_AUDIO_STOP_PLAY,
+    ROBOT_API_ID_AUDIO_TTS,
+)
 
 """
 " class SportClient

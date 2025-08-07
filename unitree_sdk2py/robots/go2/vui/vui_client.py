@@ -1,8 +1,16 @@
 import json
 
-from ...rpc.client import Client
-from .vui_api import *
-
+from ....rpc.client import Client
+from .vui_api import (
+    VUI_API_ID_GETBRIGHTNESS,
+    VUI_API_ID_GETSWITCH,
+    VUI_API_ID_GETVOLUME,
+    VUI_API_ID_SETBRIGHTNESS,
+    VUI_API_ID_SETSWITCH,
+    VUI_API_ID_SETVOLUME,
+    VUI_API_VERSION,
+    VUI_SERVICE_NAME,
+)
 
 """
 " class VideoClient

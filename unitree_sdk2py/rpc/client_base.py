@@ -2,15 +2,17 @@ import time
 
 from ..idl.unitree_api.msg.dds_ import Request_ as Request
 from ..idl.unitree_api.msg.dds_ import RequestHeader_ as RequestHeader
-from ..idl.unitree_api.msg.dds_ import RequestLease_ as RequestLease
 from ..idl.unitree_api.msg.dds_ import RequestIdentity_ as RequestIdentity
+from ..idl.unitree_api.msg.dds_ import RequestLease_ as RequestLease
 from ..idl.unitree_api.msg.dds_ import RequestPolicy_ as RequestPolicy
-
 from ..utils.future import FutureResult
-
 from .client_stub import ClientStub
-from .internal import *
-
+from .internal import (
+    RPC_ERR_CLIENT_API_NOT_MATCH,
+    RPC_ERR_CLIENT_API_TIMEOUT,
+    RPC_ERR_CLIENT_SEND,
+    RPC_ERR_UNKNOWN,
+)
 
 """
 " class ClientBase
@@ -106,7 +108,7 @@ class ClientBase:
         leaseId: int,
     ):
         header = self.__SetHeader(apiId, leaseId, proirity, True)
-        request = Request(header, requestParamter, request_binary)
+        request = Request(header, requestParamter, requestBinary)
 
         if self.__stub.Send(request, self.__timeout):
             return 0

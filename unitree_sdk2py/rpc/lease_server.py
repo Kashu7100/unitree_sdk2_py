@@ -1,16 +1,20 @@
-import time
 import json
-
+import time
 from threading import Lock
 
 from ..idl.unitree_api.msg.dds_ import Request_ as Request
+from ..idl.unitree_api.msg.dds_ import Response_ as Response
 from ..idl.unitree_api.msg.dds_ import ResponseHeader_ as ResponseHeader
 from ..idl.unitree_api.msg.dds_ import ResponseStatus_ as ResponseStatus
-from ..idl.unitree_api.msg.dds_ import Response_ as Response
-
-from .internal import *
+from .internal import (
+    RPC_API_ID_LEASE_APPLY,
+    RPC_API_ID_LEASE_RENEWAL,
+    RPC_ERR_SERVER_API_NOT_IMPL,
+    RPC_ERR_SERVER_API_PARAMETER,
+    RPC_ERR_SERVER_LEASE_EXIST,
+    RPC_ERR_SERVER_LEASE_NOT_EXIST,
+)
 from .server_base import ServerBase
-
 
 """
 " class LeaseCache
@@ -76,7 +80,7 @@ class LeaseServer(ServerBase):
             p = json.loads(parameter)
             name = p.get("name")
 
-        except:
+        except Exception:
             print("[LeaseServer] apply json loads error. parameter:", parameter)
             return RPC_ERR_SERVER_API_PARAMETER, data
 

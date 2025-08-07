@@ -1,11 +1,9 @@
-import time
 import json
+import time
 
+from test_api import TEST_API_ID_MOVE, TEST_API_ID_STOP, TEST_API_VERSION
 from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.rpc.server import Server
-
-from test_api import *
-
 
 """
 " class TestServer

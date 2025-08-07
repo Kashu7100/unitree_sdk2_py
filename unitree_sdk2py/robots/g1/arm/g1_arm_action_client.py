@@ -1,7 +1,12 @@
 import json
 
-from ...rpc.client import Client
-from .g1_arm_action_api import *
+from ....rpc.client import Client
+from .g1_arm_action_api import (
+    ARM_ACTION_API_VERSION,
+    ARM_ACTION_SERVICE_NAME,
+    ROBOT_API_ID_ARM_ACTION_EXECUTE_ACTION,
+    ROBOT_API_ID_ARM_ACTION_GET_ACTION_LIST,
+)
 
 action_map = {
     "release arm": 99,

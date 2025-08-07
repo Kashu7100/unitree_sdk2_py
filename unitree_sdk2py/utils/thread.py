@@ -4,7 +4,7 @@ import os
 import threading
 
 from .future import Future
-from .timerfd import *
+from .timerfd import itimerspec, timerfd_create, timerfd_settime
 
 
 class Thread(Future):
@@ -71,7 +71,7 @@ class RecurrentThread(Thread):
                 )
 
             try:
-                buf = os.read(tfd, 8)
+                _ = os.read(tfd, 8)
                 # print(struct.unpack("Q", buf)[0])
             except OSError as e:
                 if e.errno != errno.EAGAIN:

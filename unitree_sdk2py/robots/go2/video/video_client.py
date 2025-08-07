@@ -1,6 +1,9 @@
-from ...rpc.client import Client
-from .video_api import *
-
+from ....rpc.client import Client
+from .video_api import (
+    VIDEO_API_ID_GETIMAGESAMPLE,
+    VIDEO_API_VERSION,
+    VIDEO_SERVICE_NAME,
+)
 
 """
 " class VideoClient

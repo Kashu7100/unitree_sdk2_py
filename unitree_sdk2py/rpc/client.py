@@ -1,6 +1,10 @@
 from .client_base import ClientBase
+from .internal import (
+    RPC_API_ID_INTERNAL_API_VERSION,
+    RPC_ERR_CLIENT_API_NOT_REG,
+    RPC_INTERNAL_API_ID_MAX,
+)
 from .lease_client import LeaseClient
-from .internal import *
 
 """
 " class Client

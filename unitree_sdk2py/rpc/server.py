@@ -1,13 +1,17 @@
 from typing import Callable
 
 from ..idl.unitree_api.msg.dds_ import Request_ as Request
-from ..idl.unitree_api.msg.dds_ import ResponseStatus_ as ResponseStatus
-from ..idl.unitree_api.msg.dds_ import ResponseHeader_ as ResponseHeader
 from ..idl.unitree_api.msg.dds_ import Response_ as Response
-
-from .server_base import ServerBase
+from ..idl.unitree_api.msg.dds_ import ResponseHeader_ as ResponseHeader
+from ..idl.unitree_api.msg.dds_ import ResponseStatus_ as ResponseStatus
+from .internal import (
+    RPC_API_ID_INTERNAL_API_VERSION,
+    RPC_ERR_SERVER_API_NOT_IMPL,
+    RPC_ERR_SERVER_INTERNAL,
+    RPC_ERR_SERVER_LEASE_DENIED,
+)
 from .lease_server import LeaseServer
-from .internal import *
+from .server_base import ServerBase
 
 """
 " class Server
@@ -110,7 +114,7 @@ class Server(ServerBase):
                         code, dataBinary = binaryRequestHandler(parameterBinary)
                         if code != 0:
                             dataBinary = []
-                except:
+                except Exception:
                     code = RPC_ERR_SERVER_INTERNAL
 
         if request.header.policy.noreply:

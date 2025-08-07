@@ -1,6 +1,6 @@
+from enum import Enum
 from threading import Condition
 from typing import Any
-from enum import Enum
 
 """
 " Enum RequtestFutureState
@@ -69,8 +69,8 @@ class Future:
                 return self.__condition.wait()
             else:
                 return self.__condition.wait(timeout)
-        except:
-            print("[Future] future wait error")
+        except Exception as e:
+            print(f"[Future] future wait error: {e}")
             return False
 
     def __WaitResult(self, timeout: float = None):

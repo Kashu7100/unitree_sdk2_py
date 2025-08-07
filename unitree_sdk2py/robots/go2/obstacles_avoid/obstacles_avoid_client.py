@@ -1,8 +1,14 @@
 import json
 
-from ...rpc.client import Client
-from .obstacles_avoid_api import *
-
+from ....rpc.client import Client
+from .obstacles_avoid_api import (
+    OBSTACLES_AVOID_API_ID_MOVE,
+    OBSTACLES_AVOID_API_ID_SWITCH_GET,
+    OBSTACLES_AVOID_API_ID_SWITCH_SET,
+    OBSTACLES_AVOID_API_ID_USE_REMOTE_COMMAND_FROM_API,
+    OBSTACLES_AVOID_API_VERSION,
+    OBSTACLES_AVOID_SERVICE_NAME,
+)
 
 """
 " class ObstaclesAvoidClient

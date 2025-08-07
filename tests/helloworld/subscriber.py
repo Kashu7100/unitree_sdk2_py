@@ -1,5 +1,5 @@
-from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
 from helloworld import HelloWorld
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
 
 ChannelFactoryInitialize()
 
@@ -13,5 +13,3 @@ while True:
         print("subscribe error.")
     else:
         print("subscribe success. msg:", msg)
-
-pub.Close()

@@ -1,6 +1,5 @@
-from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
-from user_data import *
-
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from user_data import UserData
 
 if __name__ == "__main__":
     ChannelFactoryInitialize()

@@ -1,13 +1,16 @@
-import time
-import socket
-import os
 import json
-
-from threading import Thread, Lock
+import os
+import socket
+import time
+from threading import Lock, Thread
 
 from .client_base import ClientBase
-from .internal import *
-
+from .internal import (
+    RPC_API_ID_LEASE_APPLY,
+    RPC_API_ID_LEASE_RENEWAL,
+    RPC_ERR_SERVER_LEASE_NOT_EXIST,
+    RPC_LEASE_TERM,
+)
 
 """
 " class LeaseContext

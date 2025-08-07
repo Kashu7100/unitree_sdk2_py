@@ -1,15 +1,15 @@
-import time
-import sys
 import struct
+import sys
+import time
 
-from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+
+# Uncomment the following two lines when using G1、H1-2 robot
+from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowState_
 
 # Uncomment the following two lines when using Go2、Go2-W、B2、B2-W、H1 robot
 # from unitree_sdk2py.idl.default import unitree_go_msg_dds__LowState_
 # from unitree_sdk2py.idl.unitree_go.msg.dds_ import LowState_
-
-# Uncomment the following two lines when using G1、H1-2 robot
-from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowState_
 
 
 class unitreeRemoteController:
@@ -63,10 +63,11 @@ class unitreeRemoteController:
         self.Rx = struct.unpack("<f", data[rx_offset : rx_offset + 4])[0]
         ry_offset = 12
         self.Ry = struct.unpack("<f", data[ry_offset : ry_offset + 4])[0]
-        L2_offset = 16
-        L2 = struct.unpack("<f", data[L2_offset : L2_offset + 4])[
-            0
-        ]  # Placeholder，unused
+        # Placeholder，unused
+        # L2_offset = 16
+        # L2 = struct.unpack("<f", data[L2_offset : L2_offset + 4])[
+        #     0
+        # ]
         ly_offset = 20
         self.Ly = struct.unpack("<f", data[ly_offset : ly_offset + 4])[0]
 

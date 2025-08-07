@@ -1,9 +1,15 @@
 import json
 
-from ...rpc.client import Client
-from ...rpc.internal import *
-from .robot_state_api import *
-
+from ....rpc.client import Client
+from .robot_state_api import (
+    ROBOT_STATE_API_ID_REPORT_FREQ,
+    ROBOT_STATE_API_ID_SERVICE_LIST,
+    ROBOT_STATE_API_ID_SERVICE_SWITCH,
+    ROBOT_STATE_API_VERSION,
+    ROBOT_STATE_ERR_SERVICE_PROTECTED,
+    ROBOT_STATE_ERR_SERVICE_SWITCH,
+    ROBOT_STATE_SERVICE_NAME,
+)
 
 """
 " class ServiceState
@@ -84,5 +90,5 @@ class RobotStateClient(Client):
         p["duration"] = duration
         parameter = json.dumps(p)
 
-        code, data = self._Call(ROBOT_STATE_API_ID_REPORT_FREQ, p)
+        code, _ = self._Call(ROBOT_STATE_API_ID_REPORT_FREQ, parameter)
         return code

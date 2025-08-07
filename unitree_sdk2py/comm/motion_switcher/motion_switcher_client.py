@@ -1,7 +1,15 @@
 import json
 
 from ...rpc.client import Client
-from .motion_switcher_api import *
+from .motion_switcher_api import (
+    MOTION_SWITCHER_API_ID_CHECK_MODE,
+    MOTION_SWITCHER_API_ID_GET_SILENT,
+    MOTION_SWITCHER_API_ID_RELEASE_MODE,
+    MOTION_SWITCHER_API_ID_SELECT_MODE,
+    MOTION_SWITCHER_API_ID_SET_SILENT,
+    MOTION_SWITCHER_API_VERSION,
+    MOTION_SWITCHER_SERVICE_NAME,
+)
 
 """
 " class MotionSwitcherClient

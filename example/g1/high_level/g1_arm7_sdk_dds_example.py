@@ -1,15 +1,16 @@
-import time
 import sys
-
-from unitree_sdk2py.core.channel import ChannelPublisher, ChannelFactoryInitialize
-from unitree_sdk2py.core.channel import ChannelSubscriber
-from unitree_sdk2py.idl.default import unitree_hg_msg_dds__LowCmd_
-from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowCmd_
-from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowState_
-from unitree_sdk2py.utils.crc import CRC
-from unitree_sdk2py.utils.thread import RecurrentThread
+import time
 
 import numpy as np
+from unitree_sdk2py.core.channel import (
+    ChannelFactoryInitialize,
+    ChannelPublisher,
+    ChannelSubscriber,
+)
+from unitree_sdk2py.idl.default import unitree_hg_msg_dds__LowCmd_
+from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowCmd_, LowState_
+from unitree_sdk2py.utils.crc import CRC
+from unitree_sdk2py.utils.thread import RecurrentThread
 
 kPi = 3.141592654
 kPi_2 = 1.57079632
@@ -135,16 +136,16 @@ class Custom:
         self.lowCmdWriteThreadPtr = RecurrentThread(
             interval=self.control_dt_, target=self.LowCmdWrite, name="control"
         )
-        while self.first_update_low_state == False:
+        while not self.first_update_low_state:
             time.sleep(1)
 
-        if self.first_update_low_state == True:
+        if self.first_update_low_state:
             self.lowCmdWriteThreadPtr.Start()
 
     def LowStateHandler(self, msg: LowState_):
         self.low_state = msg
 
-        if self.first_update_low_state == False:
+        if not self.first_update_low_state:
             self.first_update_low_state = True
 
     def LowCmdWrite(self):

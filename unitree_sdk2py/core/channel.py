@@ -1,25 +1,24 @@
-import time
-from typing import Any, Callable
 import threading
-from threading import Thread, Event
+import time
+from threading import Event, Thread
+from typing import Any, Callable
 
+from cyclonedds.core import DDSException, Listener
 from cyclonedds.domain import Domain, DomainParticipant
-from cyclonedds.internal import dds_c_t
+from cyclonedds.internal import InvalidSample, dds_c_t
 from cyclonedds.pub import DataWriter
+from cyclonedds.qos import Qos
 from cyclonedds.sub import DataReader
 from cyclonedds.topic import Topic
-from cyclonedds.qos import Qos
-from cyclonedds.core import DDSException, Listener
 from cyclonedds.util import duration
-from cyclonedds.internal import InvalidSample
 
-# for channel config
-from .channel_config import ChannelConfigAutoDetermine, ChannelConfigHasInterface
+from ..utils.bqueue import BQueue
 
 # for singleton
 from ..utils.singleton import Singleton
-from ..utils.bqueue import BQueue
 
+# for channel config
+from .channel_config import ChannelConfigAutoDetermine, ChannelConfigHasInterface
 
 """
 " class ChannelReader
@@ -84,7 +83,7 @@ class Channel:
                 print("[Reader] catch DDSException msg:", e.msg)
             except TimeoutError:
                 print("[Reader] take sample timeout")
-            except:
+            except Exception:
                 print("[Reader] take sample error")
 
             return sample
@@ -109,7 +108,7 @@ class Channel:
             except TimeoutError:
                 print("[Reader] take sample timeout")
                 return
-            except:
+            except Exception:
                 print("[Reader] take sample error")
                 return
 
@@ -250,7 +249,7 @@ class ChannelFactory(Singleton):
             except DDSException as e:
                 print("[ChannelFactory] create domain error. msg:", e.msg)
                 return False
-            except:
+            except Exception:
                 print("[ChannelFactory] create domain error.")
                 return False
 
@@ -259,7 +258,7 @@ class ChannelFactory(Singleton):
             except DDSException as e:
                 print("[ChannelFactory] create domain participant error. msg:", e.msg)
                 return False
-            except:
+            except Exception:
                 print("[ChannelFactory] create domain participant error")
                 return False
 

@@ -1,11 +1,11 @@
-from .default import *
 from . import (
     builtin_interfaces,
     geometry_msgs,
     sensor_msgs,
     std_msgs,
-    unitree_go,
     unitree_api,
+    unitree_go,
+    unitree_hg,
 )
 
 __all__ = [

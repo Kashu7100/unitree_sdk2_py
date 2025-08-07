@@ -1,7 +1,22 @@
 import json
 
-from ...rpc.client import Client
-from .g1_loco_api import *
+from ....rpc.client import Client
+from .g1_loco_api import (
+    LOCO_API_VERSION,
+    LOCO_SERVICE_NAME,
+    ROBOT_API_ID_LOCO_GET_BALANCE_MODE,
+    ROBOT_API_ID_LOCO_GET_FSM_ID,
+    ROBOT_API_ID_LOCO_GET_FSM_MODE,
+    ROBOT_API_ID_LOCO_GET_PHASE,
+    ROBOT_API_ID_LOCO_GET_STAND_HEIGHT,
+    ROBOT_API_ID_LOCO_GET_SWING_HEIGHT,
+    ROBOT_API_ID_LOCO_SET_ARM_TASK,
+    ROBOT_API_ID_LOCO_SET_BALANCE_MODE,
+    ROBOT_API_ID_LOCO_SET_FSM_ID,
+    ROBOT_API_ID_LOCO_SET_STAND_HEIGHT,
+    ROBOT_API_ID_LOCO_SET_SWING_HEIGHT,
+    ROBOT_API_ID_LOCO_SET_VELOCITY,
+)
 
 """
 " class SportClient

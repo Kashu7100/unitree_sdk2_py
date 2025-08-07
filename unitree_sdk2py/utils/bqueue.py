@@ -1,6 +1,6 @@
-from typing import Any
 from collections import deque
 from threading import Condition
+from typing import Any
 
 
 class BQueue:
@@ -32,7 +32,7 @@ class BQueue:
             if not self.__queue:
                 try:
                     self.__condition.wait(timeout)
-                except:
+                except Exception:
                     return None
 
                 if not self.__queue:

@@ -1,6 +1,9 @@
-from ...rpc.client import Client
-from .back_video_api import *
-
+from ....rpc.client import Client
+from .back_video_api import (
+    ROBOT_BACK_VIDEO_API_ID_GETIMAGESAMPLE,
+    ROBOT_BACK_VIDEO_API_VERSION,
+    ROBOT_BACK_VIDEO_SERVICE_NAME,
+)
 
 """
 " class FrontVideoClient

@@ -1,18 +1,19 @@
-import time
 import sys
+import time
 
-from unitree_sdk2py.core.channel import ChannelPublisher, ChannelFactoryInitialize
-from unitree_sdk2py.core.channel import ChannelSubscriber
-from unitree_sdk2py.idl.default import unitree_hg_msg_dds__LowCmd_
-from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowCmd_
-from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowState_
-from unitree_sdk2py.utils.crc import CRC
-from unitree_sdk2py.utils.thread import RecurrentThread
+import numpy as np
 from unitree_sdk2py.comm.motion_switcher.motion_switcher_client import (
     MotionSwitcherClient,
 )
-
-import numpy as np
+from unitree_sdk2py.core.channel import (
+    ChannelFactoryInitialize,
+    ChannelPublisher,
+    ChannelSubscriber,
+)
+from unitree_sdk2py.idl.default import unitree_hg_msg_dds__LowCmd_
+from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowCmd_, LowState_
+from unitree_sdk2py.utils.crc import CRC
+from unitree_sdk2py.utils.thread import RecurrentThread
 
 G1_NUM_MOTOR = 29
 
@@ -160,16 +161,16 @@ class Custom:
         self.lowCmdWriteThreadPtr = RecurrentThread(
             interval=self.control_dt_, target=self.LowCmdWrite, name="control"
         )
-        while self.update_mode_machine_ == False:
+        while not self.update_mode_machine_:
             time.sleep(1)
 
-        if self.update_mode_machine_ == True:
+        if self.update_mode_machine_:
             self.lowCmdWriteThreadPtr.Start()
 
     def LowStateHandler(self, msg: LowState_):
         self.low_state = msg
 
-        if self.update_mode_machine_ == False:
+        if not self.update_mode_machine_:
             self.mode_machine_ = self.low_state.mode_machine
             self.update_mode_machine_ = True
 
