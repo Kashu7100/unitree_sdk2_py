@@ -10,6 +10,8 @@ from test_api import *
 """
 " class TestServer
 """
+
+
 class TestServer(Server):
     def __init__(self):
         super().__init__("test")
@@ -31,7 +33,8 @@ class TestServer(Server):
         print("Stop Called.")
         return 0, ""
 
-if __name__ ==  "__main__":
+
+if __name__ == "__main__":
     # initialize channel factory.
     ChannelFactoryInitialize(0)
 

@@ -1,8 +1,7 @@
 import time
 
-from enum import Enum
-from threading import Thread, Condition
-from typing import Callable, Any
+from threading import Thread
+from typing import Callable
 
 from ..utils.bqueue import BQueue
 from ..idl.unitree_api.msg.dds_ import Request_ as Request
@@ -15,6 +14,8 @@ from ..core.channel_name import ChannelType, GetServerChannelName
 """
 " class ServerStub
 """
+
+
 class ServerStub:
     def __init__(self, serviceName: str):
         self.__serviceName = serviceName
@@ -34,17 +35,28 @@ class ServerStub:
         factory = ChannelFactory()
 
         # create channel
-        self.__sendChannel = factory.CreateSendChannel(GetServerChannelName(self.__serviceName, ChannelType.SEND), Response)
-        self.__recvChannel = factory.CreateRecvChannel(GetServerChannelName(self.__serviceName, ChannelType.RECV), Request, self.__Enqueue, 10)
+        self.__sendChannel = factory.CreateSendChannel(
+            GetServerChannelName(self.__serviceName, ChannelType.SEND), Response
+        )
+        self.__recvChannel = factory.CreateRecvChannel(
+            GetServerChannelName(self.__serviceName, ChannelType.RECV),
+            Request,
+            self.__Enqueue,
+            10,
+        )
 
         # start priority request thread
         self.__queue = BQueue(10)
-        self.__queueThread = Thread(target=self.__QueueThreadFunc, name="server_queue", daemon=True)
+        self.__queueThread = Thread(
+            target=self.__QueueThreadFunc, name="server_queue", daemon=True
+        )
         self.__queueThread.start()
-        
+
         if enablePriority:
             self.__prioQueue = BQueue(5)
-            self.__prioQueueThread = Thread(target=self.__PrioQueueThreadFunc, name="server_prio_queue", daemon=True)
+            self.__prioQueueThread = Thread(
+                target=self.__PrioQueueThreadFunc, name="server_prio_queue", daemon=True
+            )
             self.__prioQueueThread.start()
 
         # wait thread started

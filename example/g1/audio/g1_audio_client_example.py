@@ -1,7 +1,7 @@
 import sys
 import time
 
-from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.g1.audio.g1_audio_client import AudioClient
 from unitree_sdk2py.robots.g1.loco.g1_loco_client import LocoClient
 

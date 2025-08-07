@@ -1,5 +1,3 @@
-import time
-
 from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelFactoryInitialize
 from user_data import *
 

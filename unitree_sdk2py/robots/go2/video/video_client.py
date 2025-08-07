@@ -1,5 +1,3 @@
-import json
-
 from ...rpc.client import Client
 from .video_api import *
 
@@ -7,10 +5,11 @@ from .video_api import *
 """
 " class VideoClient
 """
+
+
 class VideoClient(Client):
     def __init__(self):
         super().__init__(VIDEO_SERVICE_NAME, False)
-
 
     def Init(self):
         # set api version

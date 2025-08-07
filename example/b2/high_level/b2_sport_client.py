@@ -1,9 +1,8 @@
-import math
 import sys
 import time
 from dataclasses import dataclass
 
-from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.b2.sport.sport_client import SportClient
 
 
@@ -59,7 +58,6 @@ class UserInterface:
 
 
 if __name__ == "__main__":
-
     if len(sys.argv) < 2:
         print(f"Usage: python3 {sys.argv[0]} networkInterface")
         sys.exit(-1)
@@ -101,15 +99,15 @@ if __name__ == "__main__":
         elif test_option.id == 5:
             print(f"ret:{sport_client.RecoveryStand()}")
         elif test_option.id == 6:
-            print(f"ret:{sport_client.Move(0.5,0.0,0.0)}")
+            print(f"ret:{sport_client.Move(0.5, 0.0, 0.0)}")
         elif test_option.id == 7:
             print(f"ret:{sport_client.FreeWalk()}")
         elif test_option.id == 8:
             print(f"ret:{sport_client.ClassicWalk(True)}")
-            print(f"ret:{sport_client.Move(0.1,0.0,0.0)}")
+            print(f"ret:{sport_client.Move(0.1, 0.0, 0.0)}")
             time.sleep(2)
             print(f"ret:{sport_client.ClassicWalk(False)}")
-            print(f"ret:{sport_client.Move(-0.3,0.0,0.0)}")
+            print(f"ret:{sport_client.Move(-0.3, 0.0, 0.0)}")
             time.sleep(2)
 
         time.sleep(1)

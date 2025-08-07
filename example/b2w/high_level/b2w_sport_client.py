@@ -1,9 +1,8 @@
-import math
 import sys
 import time
 from dataclasses import dataclass
 
-from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.b2.sport.sport_client import SportClient
 
 

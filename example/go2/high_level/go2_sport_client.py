@@ -1,14 +1,9 @@
-import math
 import sys
 import time
 from dataclasses import dataclass
 
-from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
-from unitree_sdk2py.idl.default import unitree_go_msg_dds__SportModeState_
-from unitree_sdk2py.idl.unitree_go.msg.dds_ import SportModeState_
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.go2.sport.sport_client import (
-    SPORT_PATH_POINT_SIZE,
-    PathPoint,
     SportClient,
 )
 
@@ -74,7 +69,6 @@ class UserInterface:
 
 
 if __name__ == "__main__":
-
     print(
         "WARNING: Please ensure there are no obstacles around the robot while running this example."
     )
@@ -92,7 +86,6 @@ if __name__ == "__main__":
     sport_client.SetTimeout(10.0)
     sport_client.Init()
     while True:
-
         user_interface.terminal_handle()
 
         print(

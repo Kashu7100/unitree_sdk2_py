@@ -1,6 +1,7 @@
 """
 " service name
 """
+
 ROBOT_FRONT_VIDEO_SERVICE_NAME = "front_videohub"
 
 

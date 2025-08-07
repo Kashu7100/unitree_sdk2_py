@@ -12,10 +12,8 @@ from unitree_sdk2py.core.channel import (
 )
 from unitree_sdk2py.idl.default import (
     unitree_go_msg_dds__LowCmd_,
-    unitree_go_msg_dds__LowState_,
 )
 from unitree_sdk2py.idl.unitree_go.msg.dds_ import LowCmd_, LowState_
-from unitree_sdk2py.robots.go2.robot_state.robot_state_client import RobotStateClient
 from unitree_sdk2py.robots.go2.sport.sport_client import SportClient
 from unitree_sdk2py.utils.crc import CRC
 from unitree_sdk2py.utils.thread import RecurrentThread
@@ -235,7 +233,6 @@ class Custom:
 
 
 if __name__ == "__main__":
-
     if len(sys.argv) > 1:
         ChannelFactoryInitialize(0, sys.argv[1])
     else:

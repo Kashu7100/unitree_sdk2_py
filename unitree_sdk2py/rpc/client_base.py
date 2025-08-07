@@ -15,6 +15,8 @@ from .internal import *
 """
 " class ClientBase
 """
+
+
 class ClientBase:
     def __init__(self, serviceName: str):
         self.__timeout = 1.0
@@ -24,7 +26,9 @@ class ClientBase:
     def SetTimeout(self, timeout: float):
         self.__timeout = timeout
 
-    def _CallBase(self, apiId: int, parameter: str, proirity: int = 0, leaseId: int = 0):
+    def _CallBase(
+        self, apiId: int, parameter: str, proirity: int = 0, leaseId: int = 0
+    ):
         # print("[CallBase] call apiId:", apiId, ", proirity:", proirity, ", leaseId:", leaseId)
         header = self.__SetHeader(apiId, leaseId, proirity, False)
         request = Request(header, parameter, [])
@@ -37,7 +41,11 @@ class ClientBase:
 
         if result.code != FutureResult.FUTURE_SUCC:
             self.__stub.RemoveFuture(request.header.identity.id)
-            code = RPC_ERR_CLIENT_API_TIMEOUT if result.code == FutureResult.FUTUTE_ERR_TIMEOUT else RPC_ERR_UNKNOWN
+            code = (
+                RPC_ERR_CLIENT_API_TIMEOUT
+                if result.code == FutureResult.FUTUTE_ERR_TIMEOUT
+                else RPC_ERR_UNKNOWN
+            )
             return code, None
 
         response = result.value
@@ -56,9 +64,14 @@ class ClientBase:
         else:
             return RPC_ERR_CLIENT_SEND
 
-    def _CallRequestWithParamAndBinBase(self, apiId: int, requestParamter: str,
-                                        requestBinary: list, proirity: int = 0,
-                                        leaseId: int = 0):
+    def _CallRequestWithParamAndBinBase(
+        self,
+        apiId: int,
+        requestParamter: str,
+        requestBinary: list,
+        proirity: int = 0,
+        leaseId: int = 0,
+    ):
         header = self.__SetHeader(apiId, leaseId, proirity, False)
         request = Request(header, requestParamter, requestBinary)
 
@@ -70,7 +83,11 @@ class ClientBase:
 
         if result.code != FutureResult.FUTURE_SUCC:
             self.__stub.RemoveFuture(request.header.identity.id)
-            code = RPC_ERR_CLIENT_API_TIMEOUT if result.code == FutureResult.FUTUTE_ERR_TIMEOUT else RPC_ERR_UNKNOWN
+            code = (
+                RPC_ERR_CLIENT_API_TIMEOUT
+                if result.code == FutureResult.FUTUTE_ERR_TIMEOUT
+                else RPC_ERR_UNKNOWN
+            )
             return code, None
 
         response = result.value
@@ -80,9 +97,14 @@ class ClientBase:
         else:
             return response.header.status.code, response.data
 
-    def _CallRequestWithParamAndBinNoReplyBase(self, apiId: int, requestParamter: str,
-                                               requestBinary: list, proirity: int,
-                                               leaseId: int):
+    def _CallRequestWithParamAndBinNoReplyBase(
+        self,
+        apiId: int,
+        requestParamter: str,
+        requestBinary: list,
+        proirity: int,
+        leaseId: int,
+    ):
         header = self.__SetHeader(apiId, leaseId, proirity, True)
         request = Request(header, requestParamter, request_binary)
 
@@ -94,7 +116,7 @@ class ClientBase:
     def _CallBinaryBase(self, apiId: int, parameter: list, proirity: int, leaseId: int):
         header = self.__SetHeader(apiId, leaseId, proirity, False)
         request = Request(header, "", parameter)
-        
+
         future = self.__stub.SendRequest(request, self.__timeout)
         if future is None:
             return RPC_ERR_CLIENT_SEND, None
@@ -102,7 +124,11 @@ class ClientBase:
         result = future.GetResult(self.__timeout)
         if result.code != FutureResult.FUTURE_SUCC:
             self.__stub.RemoveFuture(request.header.identity.id)
-            code = RPC_ERR_CLIENT_API_TIMEOUT if result.code == FutureResult.FUTUTE_ERR_TIMEOUT else RPC_ERR_UNKNOWN
+            code = (
+                RPC_ERR_CLIENT_API_TIMEOUT
+                if result.code == FutureResult.FUTUTE_ERR_TIMEOUT
+                else RPC_ERR_UNKNOWN
+            )
             return code, None
 
         response = result.value
@@ -112,7 +138,9 @@ class ClientBase:
         else:
             return response.header.status.code, response.binary
 
-    def _CallBinaryNoReplyBase(self, apiId: int, parameter: list, proirity: int, leaseId: int):
+    def _CallBinaryNoReplyBase(
+        self, apiId: int, parameter: list, proirity: int, leaseId: int
+    ):
         header = self.__SetHeader(apiId, leaseId, proirity, True)
         request = Request(header, "", parameter)
 
@@ -120,7 +148,7 @@ class ClientBase:
             return 0
         else:
             return RPC_ERR_CLIENT_SEND
-    
+
     def __SetHeader(self, apiId: int, leaseId: int, priority: int, noReply: bool):
         identity = RequestIdentity(time.monotonic_ns(), apiId)
         lease = RequestLease(leaseId)

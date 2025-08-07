@@ -2,8 +2,6 @@ import time
 
 from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.go2.sport.sport_client import (
-    SPORT_PATH_POINT_SIZE,
-    PathPoint,
     SportClient,
 )
 

@@ -12,7 +12,6 @@ from unitree_sdk2py.core.channel import (
 )
 from unitree_sdk2py.idl.default import (
     unitree_go_msg_dds__LowCmd_,
-    unitree_go_msg_dds__LowState_,
 )
 from unitree_sdk2py.idl.unitree_go.msg.dds_ import LowCmd_, LowState_
 from unitree_sdk2py.robots.go2.sport.sport_client import SportClient
@@ -148,7 +147,6 @@ class Custom:
         # print("Battery state: voltage: ", msg.power_v, "current: ", msg.power_a)
 
     def LowCmdWrite(self):
-
         if self.firstRun:
             for i in range(12):
                 self.startPos[i] = self.low_state.motor_state[i].q
@@ -210,7 +208,6 @@ class Custom:
 
 
 if __name__ == "__main__":
-
     print(
         "WARNING: Please ensure there are no obstacles around the robot while running this example."
     )

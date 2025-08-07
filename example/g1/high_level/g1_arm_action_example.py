@@ -2,7 +2,7 @@ import sys
 import time
 from dataclasses import dataclass
 
-from unitree_sdk2py.core.channel import ChannelFactoryInitialize, ChannelSubscriber
+from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.robots.g1.arm.g1_arm_action_client import (
     G1ArmActionClient,
     action_map,

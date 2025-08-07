@@ -2,6 +2,7 @@ from typing import Any
 from collections import deque
 from threading import Condition
 
+
 class BQueue:
     def __init__(self, maxLen: int = 10):
         self.__curLen = 0
@@ -36,7 +37,7 @@ class BQueue:
 
                 if not self.__queue:
                     return None
-    
+
             self.__curLen -= 1
             return self.__queue.popleft()
 

@@ -9,6 +9,8 @@ from test_api import *
 """
 " class TestClient
 """
+
+
 class TestClient(Client):
     def __init__(self, enableLease: bool = False):
         super().__init__("test", enableLease)
@@ -31,11 +33,12 @@ class TestClient(Client):
     def Stop(self):
         parameter = {}
         p = json.dumps(parameter)
-        
+
         c, d = self._Call(TEST_API_ID_STOP, p)
         return c
 
-if __name__ ==  "__main__":
+
+if __name__ == "__main__":
     # initialize channel factory.
     ChannelFactoryInitialize(0)
 
